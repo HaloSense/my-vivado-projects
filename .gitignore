@@ -25,3 +25,6 @@
 
 # Potential test files in plain text
 !*.txt
+
+# Board constraint files
+!*.xdc
