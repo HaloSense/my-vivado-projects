@@ -26,7 +26,7 @@ module segment_driver(
     
     // Output arrangement:
     // {A, B, C, D, E, F, G}
-    output wire [7:0] seg_data_out,
+    output wire [6:0] seg_data_out,
 
     // DP signal
     output wire dp

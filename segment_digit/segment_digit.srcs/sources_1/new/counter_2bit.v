@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2022/09/22 02:58:59
+// Create Date: 2022/09/24 15:47:47
 // Design Name: 
-// Module Name: encoder_2_4
+// Module Name: counter_2bit
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,16 +21,19 @@
 
 `default_nettype none
 
-module encoder_2_4(
-    input wire [1:0] A,
-    output wire [3:0] Y
+module counter_2bit(
+    input wire clk,
+    input wire rst,
+    output reg [1:0] count
     );
 
-// 2-bit to 4-bit encoder
-// Effective on low level
-assign Y[0] = A[1] | A[0];
-assign Y[1] = A[1] | ~A[0];
-assign Y[2] = ~A[1] | A[0];
-assign Y[3] = ~A[1] | ~A[0];
+initial begin
+    count <= 2'b00;
+end
 
+always@(posedge clk or posedge rst)
+    if(rst == 1) 
+        count <= 2'b00;
+    else
+        count <= count + 1;
 endmodule

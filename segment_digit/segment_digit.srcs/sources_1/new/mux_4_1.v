@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2022/09/22 02:58:59
+// Create Date: 2022/09/24 15:45:59
 // Design Name: 
-// Module Name: encoder_2_4
+// Module Name: mux_4_1
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,16 +21,15 @@
 
 `default_nettype none
 
-module encoder_2_4(
-    input wire [1:0] A,
-    output wire [3:0] Y
+module mux_4_1(
+    input wire [5:0] in_0,
+    input wire [5:0] in_1,
+    input wire [5:0] in_2,
+    input wire [5:0] in_3,
+    input wire [1:0] sel,
+    output wire [5:0] out
     );
-
-// 2-bit to 4-bit encoder
-// Effective on low level
-assign Y[0] = A[1] | A[0];
-assign Y[1] = A[1] | ~A[0];
-assign Y[2] = ~A[1] | A[0];
-assign Y[3] = ~A[1] | ~A[0];
+    
+assign out = sel[1] ? (sel[0] ? in_3 : in_2) : (sel[0] ? in_1 : in_0);  
 
 endmodule
